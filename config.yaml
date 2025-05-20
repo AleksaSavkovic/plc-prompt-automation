@@ -1,0 +1,36 @@
+# config.yaml
+
+model: deepseek-coder-v2-lite-instruct
+temperature: 0.4
+top_p: 0.95
+n: 1
+seed: null
+stop: null
+repeats_per_task: 5
+program_root: "" # Add the path to the file containing the programs here
+max_tokens: 1024
+
+tasks:
+  - name: test_generation
+    input_type: source_code
+    prompt_modes:
+      - type: zero_shot
+        template_path: "prompts/zero-shot-generation.jinja2"
+      - type: few_shot
+        template_path: "prompts/few-shot-generation.jinja2"
+
+  - name: test_augmentation_add
+    input_type: source_code_and_test_cases
+    prompt_modes:
+      - type: zero_shot
+        template_path: "prompts/zero-shot-augmentation-add.jinja2"
+      - type: few_shot
+        template_path: "prompts/few-shot-augmentation-add.jinja2"
+
+  - name: test_augmentation_mod
+    input_type: source_code_and_test_cases
+    prompt_modes:
+      - type: zero_shot
+        template_path: "prompts/zero-shot-augmentation-mod.jinja2"
+      - type: few_shot
+        template_path: "prompts/few-shot-augmentation-mod.jinja2"
